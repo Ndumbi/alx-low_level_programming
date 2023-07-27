@@ -32,7 +32,16 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 			break;
 		}
 		m = n / 10;
-		r[k] = n % 10 + '0';
+		if (n >= 10)
+		{
+			r[k] = n % 10 + '0';
+			m = 1;
+		}
+		else
+		{
+			r[k] = n + '0';
+			m = 0;
+		}
 	}
 	r[k] = '\0';
 	if (i >= 0 || j >= 0 || m)
@@ -45,4 +54,3 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 	}
 	return (r);
 }
-/*Bwave */
