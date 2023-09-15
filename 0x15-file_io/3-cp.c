@@ -1,10 +1,8 @@
 #include "main.h"
-#include <stdio.h>
 #include <stdlib.h>
-
+#include <stdio.h>
 char *create_buffer(char *file);
 void close_file(int fd);
-
 /**
  * create_buffer - Allocates 1024 bytes for a buffer.
  * @file: The name of the file buffer is storing chars for.
@@ -63,8 +61,8 @@ int main(int argc, char *argv[])
 
 	if (argc != 3)
 	{
-		printf_error(97, "Usage: cp" " file_from file_to");
-		return 97;
+		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
+		exit(97);
 	}
 
 	buffer = create_buffer(argv[2]);
@@ -96,8 +94,8 @@ int main(int argc, char *argv[])
 	} while (r > 0);
 
 	free(buffer);
-	close(fd_from);
-	close(fd_to);
+	close_file(from);
+	close_file(to);
 
 	return (0);
 }
